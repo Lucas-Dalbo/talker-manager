@@ -62,4 +62,12 @@ router.put('/:id',
   res.status(200).json(attTalker);
 });
 
+router.delete('/:id', middlewares.tokenMidd, (req, res) => {
+  const { id } = req.params;
+  const talkers = readTalkers();
+  const newList = talkers.filter((pers) => pers.id !== Number(id));
+  fs.writeFileSync('talker.json', JSON.stringify(newList));
+  res.status(204).end();
+});
+
 module.exports = router;
