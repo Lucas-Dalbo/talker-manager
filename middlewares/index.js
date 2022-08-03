@@ -48,7 +48,7 @@ const validateTalkAndWatched = (talk) => {
 
 const validadeRate = (talk) => {
   const { rate } = talk;
-  if (!rate) {
+  if (rate === undefined) {
     throw new Error(JSON.stringify(
       { message: 'O campo "rate" é obrigatório', cod: 400 },
     ));
@@ -96,7 +96,7 @@ const tokenMidd = (req, _res, next) => {
   if (!token) {
     throw new Error(JSON.stringify({ message: 'Token não encontrado', cod: 401 }));
   }
-  if (!token || token.length !== 16) {
+  if (token.length !== 16) {
     throw new Error(JSON.stringify(
       { message: 'Token inválido', cod: 401 },
     ));
