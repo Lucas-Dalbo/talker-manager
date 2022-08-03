@@ -28,6 +28,15 @@ router.get('/', (_req, res) => {
   res.status(200).json(talkers);
 });
 
+router.get('/search', middlewares.tokenMidd, (req, res) => {
+  const { q } = req.query;
+  const talkers = readTalkers();
+  if (!q) return res.status(200).json(talkers);
+
+  const result = talkers.filter(({ name }) => name.includes(q));
+  res.status(200).json(result);
+});
+
 router.get('/:id', (req, res) => {
   const { id } = req.params;
   const talker = findTalker(id); 
