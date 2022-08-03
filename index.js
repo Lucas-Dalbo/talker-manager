@@ -19,7 +19,7 @@ app.get('/', (_request, response) => {
 app.post('/login',
   middlewares.validateEmailMidd,
   middlewares.validatePasswordMidd,
-  (_req, res) => {
+  (req, res) => {
   const token = generateToken();
   tokens.push(token);
   res.status(200).json({ token });

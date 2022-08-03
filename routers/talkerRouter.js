@@ -1,5 +1,6 @@
 const express = require('express');
 const fs = require('fs');
+const middlewares = require('../middlewares');
 
 const router = express.Router();
 
@@ -19,10 +20,28 @@ router.get('/:id', (req, res) => {
   const talkers = readTalkers();
   const talker = talkers.find((person) => person.id === Number(id));
   if (!talker) {
-    throw Error(JSON.stringify({ message: 'Pessoa palestrante não encontrada', cod: 404 }));
+    throw Error(JSON.stringify(
+      { message: 'Pessoa palestrante não encontrada', cod: 404 },
+    ));
   }
-
   return res.status(200).json(talker);
+});
+
+router.post('/',
+  middlewares.tokenMidd,
+  (req, res) => {
+  const { name, age, talk } = req.body;
+  const talkers = readTalkers();
+  const id = talkers.slice(-1)[0].id + 1;
+  const newTalker = {
+    name,
+    age,
+    id,
+    talk,
+  };
+  talkers.push(newTalker);
+  console.log(talkers);
+  res.status(200).json(newTalker);
 });
 
 module.exports = router;

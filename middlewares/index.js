@@ -1,3 +1,5 @@
+const tokens = require('../token');
+
 const validateEmailMidd = (req, _res, next) => {
   const { email } = req.body;
   if (!email) {
@@ -29,6 +31,24 @@ const validatePasswordMidd = (req, _res, next) => {
   next();
 };
 
+const tokenMidd = (req, _res, next) => {
+  const token = req.headers.authorization;
+  console.log(token);
+  if (!token || token.length !== 16) {
+    throw new Error(JSON.stringify(
+      { message: 'Token inválido', cod: 401 },
+    ));
+  }
+
+  const isValid = tokens.find((key) => key === token);
+  if (!isValid) {
+    throw new Error(JSON.stringify(
+      { message: 'Token não encontrado', cod: 401 },
+    ));
+  }
+  next();
+};
+
 const errorMidd = (err, _req, res, _next) => {
   const { message, cod } = JSON.parse(err.message);
   res.status(cod).json({ message });
@@ -38,4 +58,5 @@ module.exports = {
   errorMidd,
   validateEmailMidd,
   validatePasswordMidd,
+  tokenMidd,
 };
