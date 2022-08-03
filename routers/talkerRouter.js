@@ -29,6 +29,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/',
   middlewares.tokenMidd,
+  middlewares.postTalkerMidd,
   (req, res) => {
   const { name, age, talk } = req.body;
   const talkers = readTalkers();
@@ -39,9 +40,10 @@ router.post('/',
     id,
     talk,
   };
+  const newList = [...talkers, newTalker];
   talkers.push(newTalker);
-  console.log(talkers);
-  res.status(200).json(newTalker);
+  fs.writeFileSync('talker.json', JSON.stringify(newList));
+  res.status(201).json(newTalker);
 });
 
 module.exports = router;
