@@ -1,16 +1,22 @@
-# 🚧 README em construção 🚧
 
-<!-- Olá, Tryber!
+[Read it in English!](./README-Eng.md)
 
-Esse é apenas um arquivo inicial para o README do seu projeto.
+# Projeto SQL: Talker Manager
+Este projeto foi desenvolvido enquanto estudante da Trybe no módulo de Back-End!
 
-É essencial que você preencha esse documento por conta própria, ok?
+---
+## Aprendizados
+Neste projeto desenvolvi e apliquei meus conhecimentos relacionados a construção de uma API, utilizando Node.js e MySQL.
 
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
+---
+## Objetivo
+O objetivo do projeto é cosntruir e utilizar uma API, para isso, foram aplicados conehcimentos em JavaScript, lógica de programação, Node.js e MySQL, desde a construção do banco de dados até a construção dos endpoints das requisições.
 
-⚠️ IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
+---
+## O que foi utilizado?
+ - JavaScript;
+ - Node.js;
+ - MySQL, MySQLWorkbench;
+ - Docker-Compose para construção do container para os testes locais.
 
--->
+ 
